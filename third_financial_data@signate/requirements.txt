@@ -23,3 +23,6 @@ langchain-text-splitters==0.2.4
 langchain-unstructured==0.1.2
 langchainhub==0.1.21
 matplotlib==3.9.2
+pandas==2.2.2
+openai==1.57.1 
+tiktoken==0.7.0
