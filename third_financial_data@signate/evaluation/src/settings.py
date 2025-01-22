@@ -1,5 +1,7 @@
 import time
+
 import pandas as pd
+
 
 class FormatSetter():
     def __init__(self, ans_txt_path: str, max_num_tokens: int, keys: dict, ext: str, model: str) -> None:

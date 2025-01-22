@@ -1,5 +1,6 @@
-import time
 import json
+import time
+
 import pandas as pd
 import tiktoken
 from openai import OpenAI

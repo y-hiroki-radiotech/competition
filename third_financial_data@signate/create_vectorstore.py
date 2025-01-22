@@ -1,10 +1,11 @@
-from dotenv import load_dotenv
-import settings
 from glob import glob
-from pdf_reader import pdf_reader_run
+
+import settings
+from dotenv import load_dotenv
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from pdf_reader import pdf_reader_run
 
 
 def create_vector():
@@ -37,3 +38,14 @@ def create_vector():
     retriever = gen_faiss_vectorstore.as_retriever()
 
     return retriever
+
+def load_vector(file_path: str="gen_faiss_index"):
+    loaded_vectorstore = FAISS.load_local(
+    file_path,
+    embeddings=GoogleGenerativeAIEmbeddings(model=settings.EMBEDDING_MODEL)
+    )
+
+    # retrieverとして使用
+    loaded_retriever = loaded_vectorstore.as_retriever()
+
+    return loaded_retriever
