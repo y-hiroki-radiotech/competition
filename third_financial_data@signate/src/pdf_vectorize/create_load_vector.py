@@ -1,11 +1,11 @@
 from glob import glob
-
+import os
 import settings
 from dotenv import load_dotenv
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
-from pdf_reader import pdf_reader_run
+from pdf_vectorize.pdf_reader import pdf_reader_run
 
 
 def create_vector():
@@ -39,10 +39,11 @@ def create_vector():
 
     return retriever
 
-def load_vector(file_path: str="gen_faiss_index"):
+def load_vector(file_path: str="./gen_faiss_index"):
     loaded_vectorstore = FAISS.load_local(
     file_path,
-    embeddings=GoogleGenerativeAIEmbeddings(model=settings.EMBEDDING_MODEL)
+    embeddings=GoogleGenerativeAIEmbeddings(model=settings.EMBEDDING_MODEL),
+    allow_dangerous_deserialization=True,
     )
 
     # retrieverとして使用
