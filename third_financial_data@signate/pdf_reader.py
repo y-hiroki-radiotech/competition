@@ -5,10 +5,9 @@ from langchain_community.document_loaders import (
     PyPDFLoader
 )
 from typing import List
-from langchain_community.document_loaders import Document
 from glob import glob
 
-def load_pdf_with_multiple_methods(file_path: str) -> List[Document]:
+def load_pdf_with_multiple_methods(file_path: str) -> List[str]:
     """
     複数の方法でPDFファイルを読み込む関数
 
@@ -51,7 +50,7 @@ def load_pdf_with_multiple_methods(file_path: str) -> List[Document]:
     raise Exception(f"すべてのローダーが失敗: {last_error}")
 
 
-def pdf_reader_run(file_paths: List[str]) -> List[Document]:
+def pdf_reader_run(file_paths: List[str]) -> List[str]:
     """
     複数のPDFファイルを読み込み、その結果を返す
 
